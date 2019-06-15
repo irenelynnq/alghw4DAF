@@ -339,7 +339,7 @@ int selectRoot()
     double rank;
     double rootRank = DBL_MAX;
     
-    double* AverageDegree new double [numLabel];
+    double* AverageDegree = new double [numLabel];
     int l;
     for (l = 0; l < numLabel; ++l) {
         //초기화
