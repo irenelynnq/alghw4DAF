@@ -12,27 +12,27 @@ public class Main{// Q. Why public? A. Why assignment?
     public int numQueryNode;
     public int numDataNode = 0;
     public int numLabel = 0;
-    public int[] labelData = NULL; //labelData[i] contains label of vertex i
-    public int[] degreeData = NULL; //degreeData[i] contains degree of vertex i
-    public int[] sortedData = NULL; //sortedData contains V in sorted order first by label frequency and second by degree
-    public int[] idxSortedData = NULL; //idxSortedData[l] contains the last index in sortedData such that labelData[sortedData[index]] is l
-    public int[] labelFrequency = NULL; //labelFrequency[l] contains the number of vertices having label l
-    public int[] renamedLabel = NULL; //labels are renamed as consecutive numbers
+    public int[] labelData = null; //labelData[i] contains label of vertex i
+    public int[] degreeData = null; //degreeData[i] contains degree of vertex i
+    public int[] sortedData = null; //sortedData contains V in sorted order first by label frequency and second by degree
+    public int[] idxSortedData = null; //idxSortedData[l] contains the last index in sortedData such that labelData[sortedData[index]] is l
+    public int[] labelFrequency = null; //labelFrequency[l] contains the number of vertices having label l
+    public int[] renamedLabel = null; //labels are renamed as consecutive numbers
 
     //Variables for query graph
     public int root = -1;
     public int numQueryNode = 0;
     public int sumQueryDegree = 0;
-    public int[] labelQuery = NULL;
-    public int[] degreeQuery = NULL;
-    public int[] adjListQuery = NULL;
-    public int[] adjIndexQuery = NULL;
+    public int[] labelQuery = null;
+    public int[] degreeQuery = null;
+    public int[] adjListQuery = null;
+    public int[] adjIndexQuery = null;
 
     //Variables for query DAG
-    public int[][] dagChildQuery = NULL; //dagChildQuery[i]: children of node i
-    public int[][] dagParentQuery = NULL; //dagParentQuery[i]: parent of node i
-    public int[] dagChildQuerySize = NULL; //dagChildQuerySize[i]: the number of children of node i
-    public int[] dagParentQuerySize = NULL; //dagParentQuerySize[i]: the number of parent on node i
+    public int[][] dagChildQuery = null; //dagChildQuery[i]: children of node i
+    public int[][] dagParentQuery = null; //dagParentQuery[i]: parent of node i
+    public int[] dagChildQuerySize = null; //dagChildQuerySize[i]: the number of children of node i
+    public int[] dagParentQuerySize = null; //dagParentQuerySize[i]: the number of parent on node i
     public static Comparator<Integer> degreeDataComparator = new Comparator<Integer>(){
         public int compare(int o1, int o2){
             return degreeQuery[o2]-degreeQuery[o1];
@@ -57,19 +57,19 @@ public class Main{// Q. Why public? A. Why assignment?
     };
 
     private void bulidDAG(){
-        if( dagChildQuery == NULL ) {
+        if( dagChildQuery == null ) {
             dagChildQuery = new int[numQueryNode][];
             for(int i = 0; i < numQueryNode; ++i)
-                dagChildQuery[i] = NULL;
+                dagChildQuery[i] = null;
         }
-        if( dagParentQuery == NULL ) {
+        if( dagParentQuery == null ) {
             dagParentQuery = new int[numQueryNode][];
             for(int i = 0; i < numQueryNode; ++i)
-                dagParentQuery[i] = NULL;
+                dagParentQuery[i] = null;
         }
-        if( dagChildQuerySize == NULL )
+        if( dagChildQuerySize == null )
             dagChildQuerySize = new int[numQueryNode];
-        if( dagParentQuerySize == NULL )
+        if( dagParentQuerySize == null )
             dagParentQuerySize = new int[numQueryNode];
 
         Arrays.fill(dagChildQuerySize, 0);
@@ -79,13 +79,13 @@ public class Main{// Q. Why public? A. Why assignment?
         //memset(dagParentQuerySize, 0, sizeof(int) * numQueryNode);
 
         for(int i = 0; i < numQueryNode; ++i) {
-            if( dagChildQuery[i] != NULL) {
-                dagChildQuery[i] = NULL;
+            if( dagChildQuery[i] != null) {
+                dagChildQuery[i] = null;
             }
             dagChildQuery[i] = new int[degreeQuery[i]];
 
-            if( dagParentQuery[i] != NULL ) {
-                dagParentQuery[i] = NULL;
+            if( dagParentQuery[i] != null ) {
+                dagParentQuery[i] = null;
             }
             dagParentQuery[i] = new int[degreeQuery[i]];
         }
@@ -171,11 +171,11 @@ public class Main{// Q. Why public? A. Why assignment?
                 id = Integer.parseInt(line.split(" ")[1]);
                 numDataNode = Integer.parseInt(line.split(" ")[2]);
 
-                if( labelData != NULL) {
-                    labelData = NULL;
+                if( labelData != null) {
+                    labelData = null;
                 }
-                if( degreeData != NULL ) {
-                    degreeData = NULL;
+                if( degreeData != null ) {
+                    degreeData = null;
                 }
                 labelData = new int[numDataNode];
                 degreeData = new int[numDataNode];
@@ -192,7 +192,7 @@ public class Main{// Q. Why public? A. Why assignment?
                 id = Integer.parseInt(line.split(" ")[1]);
                 label = Integer.parseInt(line.split(" ")[2]);
 
-                if( labelData == NULL || numDataNode < id ) {
+                if( labelData == null || numDataNode < id ) {
                     System.out.println("ERROR: in readDataGraph, vertex id out of range");
                     return;//originally exit(-1);
                 }
@@ -229,15 +229,15 @@ public class Main{// Q. Why public? A. Why assignment?
         //2nd read: rename label, set labelData, and set labelFrequency
         int labelId = 0;
 
-        if( renamedLabel != NULL ) {
-            renamedLabel = NULL;
+        if( renamedLabel != null ) {
+            renamedLabel = null;
         }
         renamedLabel = new int[largestLabel + 1];
         //memset(renamedLabel, -1, sizeof(int) * (largestLabel + 1) );
         Arrays.fill(renamedLabel, -1);
 
-        if( labelFrequency != NULL ) {
-            labelFrequency = NULL;
+        if( labelFrequency != null ) {
+            labelFrequency = null;
         }
         labelFrequency = new int[numLabel];
         //memset(labelFrequency, 0, sizeof(int) * (numLabel));
@@ -284,8 +284,8 @@ public class Main{// Q. Why public? A. Why assignment?
         //////////////////
         //sort data vertices by label name.
         //Then, sort by degree for each label group
-        if(sortedData != NULL ) {
-            sortedData = NULL;
+        if(sortedData != null ) {
+            sortedData = null;
         }
         sortedData = new int[numDataNode];
         for(int i = 0; i < numDataNode; ++i)
@@ -296,8 +296,8 @@ public class Main{// Q. Why public? A. Why assignment?
         Arrays.sort(sortedData, 0, numDataNode, degreeDataComparator);
         Arrays.sort(sortedData, 0, numDataNode, labelComparator);
 
-        if( idxSortedData != NULL ) {
-            idxSortedData = NULL;
+        if( idxSortedData != null ) {
+            idxSortedData = null;
         }
         idxSortedData = new int[numLabel + 1];
 
@@ -318,21 +318,21 @@ public class Main{// Q. Why public? A. Why assignment?
     public void readQueryGraph(BufferedReader aInFile, int aSumDegree){
         //////////////////
         //allocate memory
-        if( labelQuery == NULL )
+        if( labelQuery == null )
             labelQuery = new int[numQueryNode];
-        if( degreeQuery == NULL )
+        if( degreeQuery == null )
             degreeQuery = new int[numQueryNode];
-        if( adjIndexQuery == NULL )
+        if( adjIndexQuery == null )
             adjIndexQuery = new int[numQueryNode + 1];
-        if( adjListQuery == NULL ) {
+        if( adjListQuery == null ) {
             adjListQuery = new int[aSumDegree];
             sumQueryDegree = aSumDegree;
         }
 
         //(re)allocate memory for adjacency list of query graph
         if( sumQueryDegree < aSumDegree ) {
-            if( adjListQuery != NULL ) {
-                adjListQuery = NULL;
+            if( adjListQuery != null ) {
+                adjListQuery = null;
             }
 
             adjListQuery = new int[aSumDegree];
