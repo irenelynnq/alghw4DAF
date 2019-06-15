@@ -808,11 +808,6 @@ public class Main{// Q. Why public? A. Why assignment?
         }
     }
 
-    public int selectRoot(){
-        // To be implemented
-        return 0;
-    }
-
     public static void main(String[] args) {
         //args[1] : name of data query file
         //args[2] : name of query graph file
