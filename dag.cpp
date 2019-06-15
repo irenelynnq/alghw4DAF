@@ -339,24 +339,16 @@ int selectRoot()
     double rank;
     double rootRank = DBL_MAX;
     
-    double* AverageDegree new double [numLabel];
+    double* AverageDegree = new double [numLabel];
     int l;
     for (l = 0; l < numLabel; ++l) {
         //초기화
         AverageDegree[l] = 0;
     }
     int k;
-    //l=0인 경우
-    l = 0;
-    for(k = 0; k < idxSortedData[l]; ++k){
-        int v = sortedData[k];
-        AverageDegree[l] = AverageDegree[l] + (double)degreeData[v];
-    }
-    AverageDegree[l] = AverageDegree[l] / (double)labelFrequency[l];
-    
-    for (l = 1; l < numLabel; ++l) {
+    for (l = 0; l < numLabel; ++l) {
         //각 라벨당
-        for(k = idxSortedData[l-1]+1; k < idxSortedData[l] + 1; ++k){
+        for(k = idxSortedData[l]; k < idxSortedData[l+1]; ++k){
             int v = sortedData[k];
             AverageDegree[l] = AverageDegree[l] + (double)degreeData[v];
         }
