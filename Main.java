@@ -367,7 +367,7 @@ public class Main{// Q. Why public? A. Why assignment?
 		int label;
 		int degree;
 		double rank;
-		double rootRank = DBL_MAX;
+		double rootRank = 99999;
 
 		for (int i = 0; i < numQueryNode; ++i) {
 			label = labelQuery[i];
