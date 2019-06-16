@@ -352,7 +352,7 @@ int selectRoot()
         int v = sortedData[k];
         AverageDegree[l] = AverageDegree[l] + (double)degreeData[v];
     }
-    AverageDegree[l] = AverageDegree[l] / (double)labelFrequency[l];
+    AverageDegree[l] = AverageDegree[l] / (double)labelFrequency[renamedLabel[l]];
     
     for (l = 1; l < numLabel; ++l) {
         //각 라벨당
@@ -361,8 +361,10 @@ int selectRoot()
             AverageDegree[l] = AverageDegree[l] + (double)degreeData[v];
         }
         //평균내기
-        AverageDegree[l] = AverageDegree[l] / (double)labelFrequency[l];
+        AverageDegree[l] = AverageDegree[l] / (double)labelFrequency[renamedLabel[l]];
     }
+
+
 
     for (int i = 0; i < numQueryNode; ++i) {
         label = labelQuery[i];
@@ -375,11 +377,12 @@ int selectRoot()
 
         int numInitCand = end - mid;
         
-        rank = (numInitCand*numInitCand)/((double)degree*avdegree);
+		rank = (double)avdegree/(double)degree; //6600, 88
 
         if( rank < rootRank ) {
             root = i;
             rootRank = rank;
+
         }
     }
 
